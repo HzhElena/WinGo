@@ -33,6 +33,10 @@ unzip gogui-1.4.9.zip
 ```Bash
 sudo ./install.sh -j JAVA_HOME
 ```
+在服务器下
+```Bash
+./install.sh
+```
 注意这一步因人而异，install.sh 默认 JAVA_HOME=/usr. 如果你的JAVA_HOME和默认的不一致的话会导致安装失败。可以用下面这个command找到你的JAVA_HOME:
 ```Bash
 which java
@@ -47,12 +51,15 @@ gogui
 ### 在服务器上安装GoGui
 由于没有服务器的sudo权限，最大区别在于安装脚本和PREFIX上，需要作出一点相应的改动
 
-新建一个local文件夹，具体路径为~/local，然后打开install.sh做两处修改:
-1) 第3行： PREFIX=/usr/local => PREFIX=~/local
+新建一个local文件夹，具体路径为~/envi/local，然后打开install.sh做两处修改:
+1) 第3行： PREFIX=/usr/local => PREFIX=~/envi/local
 2) 第56行： if [ -f $FILE -a -x $FILE ]; then => if [ -f $FILE -a $FILE ]; then
 
 余下安装与在本地安装是同理
-
+使用时
+```Bash
+~/envi/local/gogui
+```
 ## 安装GnuGo
 输入以下command直接安装：
 ```Bash
