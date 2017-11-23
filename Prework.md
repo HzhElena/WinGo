@@ -6,6 +6,25 @@
 * GoGui常用命令
 * 在服务器上运行DarkForest
 * DarkForest vs MuGo
+## 环境配置总结
+* Gogui
+创建 local 文件夹路径为 ~/envi/local
+因此运行gogui相关命令需加 ~/envi/local/bin 路径
+```Bash
+~/envi/local/bin/gogui
+```
+* MuGo
+需要运行MuGo时需要先进入虚拟环境
+```Bash
+source ~/goenvs/go/bin/activate
+deactivate
+```
+在激活环境后，直接输入python和pip都是默认python3的
+* Darkforest
+设置pipe file path = ~/data/local/go。要运行主程序需要设定pipe file path
+```Bash
+th cnnPlayerMCTSV2.lua [other option] --pipe_path ~/data/local/go
+```
 
 ## 安装java
 如果ubuntu上已经有java的话可以跳过这一步，没有的话需要去安装一下并配置好环境变量
@@ -132,9 +151,9 @@ gogui-twogtp -analyze gnuvsmugo.dat
 原理与gnugo vs MuGo是一样的，语法逻辑还是指定相应的运行指令, 注意相对应地修改指定的路径即可。注意Darkforest源码指定了运行主程序要在./cnnPlayerV2路径下，不想改代码的话就在这个路径下运行好了。MuGo没有这样的要求
 ```Bash
 cd ./cnnPlayerV2
-BLACK="th cnnPlayerMCTSV2.lua --num_gpu 2 --time_limit 10 --pipe_path ../data/local/go"
+BLACK="th cnnPlayerMCTSV2.lua --num_gpu 2 --time_limit 10 --pipe_path ~/data/local/go"
 WHITE="python ../../MuGo-0.1/main.py gtp policy --read-file=../../MuGo-0.1/saved_models/20170718"
-../../local/bin/gogui-twogtp -black "$BLACK" -white "$WHITE" -games 100 -size 19 -sgffile ./dfvsmugo/dfvsmugo -auto -verbose
+~/envi/local/bin/gogui-twogtp -black "$BLACK" -white "$WHITE" -games 100 -size 19 -sgffile ./dfvsmugo/dfvsmugo -auto -verbose
 ```
 上面的路径可以根据具体情况进行修改
 -auto 让两个AI自动进行对战
@@ -154,7 +173,7 @@ Usage部分需要注意Step 2. 我们没有权限访问/data/local/go，需要�
 cd ./local_evaluator
 sh cnn_evaluator.sh 1 ~/data/local/go
 ```
-最后注意Step 3中要运行主程序的话，主程序内默认的pipe file path = /data/local/go，这里运行时同样需要重新指定:
+最后注意Step 3中要运行主程序的话，主程序内默认的pipe file path = ~/data/local/go，这里运行时同样需要重新指定:
 ```Bash
 th cnnPlayerMCTSV2.lua [other option] --pipe_path ~/data/local/go
 ```
