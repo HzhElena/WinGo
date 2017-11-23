@@ -25,7 +25,13 @@ deactivate
 ```Bash
 th cnnPlayerMCTSV2.lua [other option] --pipe_path ~/data/local/go
 ```
-
+* 两个Go对战
+```Bash
+cd ~/sourceCode/darkforestGo/cnnPlayerV2/
+BLACK="th cnnPlayerMCTSV2.lua --num_gpu 2 --time_limit 10 --pipe_path ~/data/local/go"
+WHITE="python ../../MuGo-0.1/main.py gtp policy --read-file=../../MuGo-0.1/saved_models/20170718"
+../../local/bin/gogui-twogtp -black "$BLACK" -white "$WHITE" -games 100 -size 19 -sgffile ./dfvsmugo/dfvsmugo -auto -verbose
+```
 ## 安装java
 如果ubuntu上已经有java的话可以跳过这一步，没有的话需要去安装一下并配置好环境变量
 
