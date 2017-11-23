@@ -86,6 +86,7 @@ virtualenv -p /usr/bin/python3 go
 * 激活环境，感觉virtualenv激活环境比conda麻烦多了...必须要到指定的目录下才能激活
 ```Bash
 source ~/goenvs/go/bin/activate
+deactivate
 ```
 * 安装相关依赖，在激活环境后，直接输入python和pip都是默认python3的
 ```Bash
@@ -141,12 +142,16 @@ DarkForest主页上Build部分基本已经完成，只需要执行compile这一�
 ```
 sh ./compile.sh
 ```
-Usage部分需要注意Step 2. 我们没有权限访问/data/local/go，需要重新创建一个path来指定后面的pipe file path。比如我在实验室提供的账号下创建了路径: ~/darkforest/data/local/go,则Step 2相对应要改为：
+Usage部分需要注意Step 2. 我们没有权限访问/data/local/go，需要重新创建一个path来指定后面的pipe file path。比如我在实验室提供的账号下创建了路径: ~/data/local/go,则Step 2相对应要改为：
 ```Bash
 cd ./local_evaluator
-sh cnn_evaluator.sh 1 ~/darkforest/data/local/go
+sh cnn_evaluator.sh 1 ~/data/local/go
 ```
 最后注意Step 3中要运行主程序的话，主程序内默认的pipe file path = /data/local/go，这里运行时同样需要重新指定:
 ```Bash
-th cnnPlayerMCTSV2.lua [other option] --pipe_path ~/darkforest/data/local/go
+th cnnPlayerMCTSV2.lua [other option] --pipe_path ~/data/local/go
+```
+To load an existing game up to move 23:
+```Bash
+th cnnPlayerMCTSV2.lua [other_options] --setup_board "/path/to/sgf 23"
 ```
